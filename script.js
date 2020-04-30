@@ -19,7 +19,7 @@ fetch('https://api.github.com/users/' + name)
     userName = json.name;
     description = json.bio;
     url = json.url;
-    
+
     let createName = () => {
       let userName = document.createElement('h2');
       userName.innerHTML = name;
@@ -39,7 +39,7 @@ fetch('https://api.github.com/users/' + name)
     }
     let createUrl = () => {
       let userUrl = document.createElement('a');
-      let text = document.createTextNode('profile');
+      let text = document.createTextNode(name);
       userUrl.appendChild(text);
       userUrl.href = 'https://github.com/' + name;
       body.appendChild(userUrl);
