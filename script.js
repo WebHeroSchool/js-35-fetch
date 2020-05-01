@@ -1,5 +1,12 @@
-let body = document.body;
+let container = document.getElementById('container')
+const loader = document.getElementById('loader');
 let url = window.location.toString();
+let date = new Date();
+let responseFromPromise, dateFromPromise;
+
+let hideLoader = () => {
+	loader.style.display = 'none';
+}
 
 let getNameFromUrl= (url) => {
   let getUrl = url.split('=');
@@ -10,10 +17,18 @@ let getNameFromUrl= (url) => {
    return name;
 }
 
-let name = getNameFromUrl(url);
+let getDate = new Promise((resolve, reject) =>
+  setTimeout(() => date ? resolve(date) : reject('Дата неизвеста'), 3000)
+);
 
-fetch('https://api.github.com/users/' + name)
-  .then(res => res.json())
+let getResponse = fetch('https://api.github.com/users/' + getNameFromUrl(url));
+
+Promise.all([getResponse, getDate])
+  .then(([response, date]) => {
+    responseFromPromise = response;
+    dateFromPromise = date;
+  })
+  .then(res => responseFromPromise.json())
   .then(json => {
     avatar = json.avatar_url;
     userName = json.name;
@@ -22,31 +37,37 @@ fetch('https://api.github.com/users/' + name)
 
     let createName = () => {
       let userName = document.createElement('h2');
-      userName.innerHTML = name;
-      body.appendChild(userName);
+      userName.innerHTML = getNameFromUrl(url);
+      container.appendChild(userName);
     }
     let createDescription = () => {
       let userDescription = document.createElement('p');
       userDescription.innerHTML = description;
-      body.appendChild(userDescription);
+      container.appendChild(userDescription);
     }
     let createAvatar = () => {
       let userAvatar = document.createElement('img');
       let newString = document.createElement('br');
       userAvatar.src = avatar;
-      body.appendChild(userAvatar);
-      body.appendChild(newString);
+      container.appendChild(userAvatar);
+      container.appendChild(newString);
     }
     let createUrl = () => {
       let userUrl = document.createElement('a');
-      let text = document.createTextNode(name);
+      let text = document.createTextNode(getNameFromUrl(url));
       userUrl.appendChild(text);
-      userUrl.href = 'https://github.com/' + name;
-      body.appendChild(userUrl);
+      userUrl.href = 'https://github.com/' + getNameFromUrl(url);
+      container.appendChild(userUrl);
     }
     createName();
     createDescription();
     createAvatar();
     createUrl();
   })
-  .catch(err => alert('Информация о пользователе недоступна')) 
+  .catch(err => alert('Информация о пользователе не доступна'))
+  .then(res => {
+    let createDate = document.createElement('p');
+    createDate.innerHTML = dateFromPromise;
+    container.appendChild(createDate);
+    hideLoader();
+  })
