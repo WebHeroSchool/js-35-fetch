@@ -1,6 +1,11 @@
 let container = document.getElementById('container')
 const loader = document.getElementById('loader');
 let url = window.location.toString();
+
+// debug
+console.log(url);
+// debug
+
 let date = new Date();
 let responseFromPromise, dateFromPromise;
 
@@ -22,6 +27,11 @@ let getDate = new Promise((resolve, reject) =>
 );
 
 let getResponse = fetch('https://api.github.com/users/' + getNameFromUrl(url));
+
+// debug
+console.log(getNameFromUrl(url));
+console.log(getResponse);
+// debug
 
 Promise.all([getResponse, getDate])
   .then(([response, date]) => {
