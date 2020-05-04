@@ -64,9 +64,9 @@ Promise.all([getResponse, getDate])
     }
     let createUrl = () => {
       let userUrl = document.createElement('a');
-      let text = document.createTextNode(getNameFromUrl(url));
+      let text = document.createTextNode(userName);
       userUrl.appendChild(text);
-      userUrl.href = 'https://github.com/' + getNameFromUrl(url);
+      userUrl.href = 'https://github.com/' + userName;
       container.appendChild(userUrl);
     }
     createName();
