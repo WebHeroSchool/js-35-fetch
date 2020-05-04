@@ -45,7 +45,7 @@ Promise.all([getResponse, getDate])
     description = json.bio;
     url = json.url;
     // debug
-    console.log('json=',json));
+    console.log('json=',json);
     // debug
 
     let createName = () => {
