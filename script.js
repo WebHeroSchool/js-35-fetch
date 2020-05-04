@@ -44,6 +44,9 @@ Promise.all([getResponse, getDate])
     userName = json.name;
     description = json.bio;
     url = json.url;
+    // debug
+    console.log('json=',json));
+    // debug
 
     let createName = () => {
       let userName = document.createElement('h2');
