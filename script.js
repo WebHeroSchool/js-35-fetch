@@ -46,9 +46,9 @@ Promise.all([getResponse, getDate])
     url = json.url;
 
     let createName = () => {
-      let userName = document.createElement('h2');
-      userName.innerHTML = getNameFromUrl(url);
-      container.appendChild(userName);
+      let userNameToHtml = document.createElement('h2');
+      userNameToHtml.innerHTML = userName;
+      container.appendChild(userNameToHtml);
     }
     let createDescription = () => {
       let userDescription = document.createElement('p');
