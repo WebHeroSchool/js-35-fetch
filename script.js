@@ -3,7 +3,7 @@ const loader = document.getElementById('loader');
 let url = window.location.toString();
 
 // debug
-console.log(url);
+console.log('url=',url);
 // debug
 
 let date = new Date();
@@ -29,8 +29,8 @@ let getDate = new Promise((resolve, reject) =>
 let getResponse = fetch('https://api.github.com/users/' + getNameFromUrl(url));
 
 // debug
-console.log(getNameFromUrl(url));
-console.log(getResponse);
+console.log('getNameFromUrl=',getNameFromUrl(url));
+console.log('getResponse=',getResponse);
 // debug
 
 Promise.all([getResponse, getDate])
@@ -49,6 +49,10 @@ Promise.all([getResponse, getDate])
       let userNameToHtml = document.createElement('h2');
       userNameToHtml.innerHTML = userName;
       container.appendChild(userNameToHtml);
+      // debug
+      console.log('userName=',userName);
+      console.log('userNameToHtml=', userNameToHtml);
+      // debug
     }
     let createDescription = () => {
       let userDescription = document.createElement('p');
