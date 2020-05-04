@@ -41,7 +41,7 @@ Promise.all([getResponse, getDate])
   .then(res => responseFromPromise.json())
   .then(json => {
     avatar = json.avatar_url;
-    // userName = json.name;
+    userName = json.name;
     description = json.bio;
     url = json.url;
     // debug
