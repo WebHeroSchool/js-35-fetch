@@ -79,10 +79,10 @@ Promise.all([getResponse, getDate])
     createAvatar();
     createUrl();
   })
-  .catch(err => alert('Информация о пользователе не доступна'))
   .then(res => {
     let createDate = document.createElement('p');
     createDate.innerHTML = dateFromPromise;
     container.appendChild(createDate);
     hideLoader();
   })
+  .catch(err => alert('Информация о пользователе не доступна'))
