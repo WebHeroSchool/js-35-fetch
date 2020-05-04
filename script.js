@@ -49,10 +49,7 @@ Promise.all([getResponse, getDate])
       let userNameToHtml = document.createElement('h2');
       userNameToHtml.innerHTML = userName;
       container.appendChild(userNameToHtml);
-      // debug
-      console.log('userName=',userName);
-      console.log('userNameToHtml=', userNameToHtml);
-      // debug
+      
     }
     let createDescription = () => {
       let userDescription = document.createElement('p');
@@ -74,6 +71,10 @@ Promise.all([getResponse, getDate])
       container.appendChild(userUrl);
     }
     createName();
+    // debug
+    console.log('userName=',userName);
+    console.log('userNameToHtml=', userNameToHtml);
+    // debug
     createDescription();
     createAvatar();
     createUrl();
