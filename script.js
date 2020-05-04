@@ -46,9 +46,9 @@ Promise.all([getResponse, getDate])
     url = json.url;
 
     let createName = () => {
-      let userNameToHtml = document.createElement('h2');
-      userNameToHtml.innerHTML = userName;
-      container.appendChild(userNameToHtml);
+      let userName = document.createElement('h2');
+      userName.innerHTML = name;
+      container.appendChild(userName);
       
     }
     let createDescription = () => {
@@ -65,9 +65,9 @@ Promise.all([getResponse, getDate])
     }
     let createUrl = () => {
       let userUrl = document.createElement('a');
-      let text = document.createTextNode(userName);
+      let text = document.createTextNode(name);
       userUrl.appendChild(text);
-      userUrl.href = 'https://github.com/' + userName;
+      userUrl.href = 'https://github.com/' + name;
       container.appendChild(userUrl);
     }
     createName();
