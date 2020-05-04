@@ -73,7 +73,7 @@ Promise.all([getResponse, getDate])
     createName();
     // debug
     console.log('userName=',userName);
-    console.log('userNameToHtml=', userNameToHtml);
+    console.log('userNameToHtml=', userNameToHtml.value);
     // debug
     createDescription();
     createAvatar();
