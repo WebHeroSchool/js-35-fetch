@@ -41,7 +41,7 @@ Promise.all([getResponse, getDate])
   .then(res => responseFromPromise.json())
   .then(json => {
     avatar = json.avatar_url;
-    userName = json.name;
+    // userName = json.name;
     description = json.bio;
     url = json.url;
     // debug
@@ -50,7 +50,7 @@ Promise.all([getResponse, getDate])
 
     let createName = () => {
       let userName = document.createElement('h2');
-      userName.innerHTML = name;
+      userName.innerHTML = getNameFromUrl(url);
       container.appendChild(userName);
       
     }
