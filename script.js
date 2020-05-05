@@ -50,7 +50,7 @@ Promise.all([getResponse, getDate])
 
     let createName = () => {
       let userSetName = document.createElement('h2');
-      userSetName.innerHTML = getNameFromUrl(url);
+      userSetName.innerHTML = userName;
       container.appendChild(userSetName);
       
     }
@@ -68,9 +68,9 @@ Promise.all([getResponse, getDate])
     }
     let createUrl = () => {
       let userUrl = document.createElement('a');
-      let text = document.createTextNode(name);
+      let text = document.createTextNode(userName);
       userUrl.appendChild(text);
-      userUrl.href = 'https://github.com/' + name;
+      userUrl.href = 'https://github.com/' + getNameFromUrl(url);
       container.appendChild(userUrl);
     }
     createName();
