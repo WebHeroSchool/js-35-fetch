@@ -49,9 +49,9 @@ Promise.all([getResponse, getDate])
     // debug
 
     let createName = () => {
-      let userName = document.createElement('h2');
-      userName.innerHTML = getNameFromUrl(url);
-      container.appendChild(userName);
+      let userSetName = document.createElement('h2');
+      userSetName.innerHTML = getNameFromUrl(url);
+      container.appendChild(userSetName);
       
     }
     let createDescription = () => {
