@@ -1,4 +1,5 @@
 let container = document.getElementById('container')
+const body = document.body;
 const loader = document.getElementById('loader');
 let url = window.location.toString();
 
@@ -85,7 +86,7 @@ Promise.all([getResponse, getDate])
   .then(res => {
     let createDate = document.createElement('p');
     createDate.innerHTML = dateFromPromise;
-    container.appendChild(createDate);
+    body.appendChild(createDate);
     hideLoader();
   })
   .catch(err => alert('Информация о пользователе не доступна'))
