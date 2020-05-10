@@ -1,92 +1,61 @@
-let container = document.getElementById('container')
 const body = document.body;
+const url = window.location.toString();
+const date = new Date();
 const loader = document.getElementById('loader');
-let url = window.location.toString();
+let requestFromPromise, dateFromPromise;
 
-// debug
-console.log('url=',url);
-// debug
-
-let date = new Date();
-let responseFromPromise, dateFromPromise;
-
-let hideLoader = () => {
+const cleanLoader = () => {
 	loader.style.display = 'none';
 }
 
-let getNameFromUrl= (url) => {
-  let getUrl = url.split('=');
-  let name = getUrl[1];  
-  if(name == undefined) {
-    name = 'EPShepelev';
-   }
-   return name;
+const getUsernameFromUrl = (url) => {
+  let splitOfUrl = url.split('=');
+  let stringOfUsername  = splitOfUrl[1];
+  if (stringOfUsername == undefined) {
+    stringOfUsername = 'lunar616';
+  }
+  return stringOfUsername;
 }
 
-let getDate = new Promise((resolve, reject) =>
-  setTimeout(() => date ? resolve(date) : reject('Дата неизвеста'), 3000)
+const getDate = new Promise((resolve, reject) =>
+  setTimeout(() => date ? resolve(date) : reject('Время неизвестно'), 2000)
 );
 
-let getResponse = fetch('https://api.github.com/users/' + getNameFromUrl(url));
+const getRequest = fetch(`https://api.github.com/users/${getUsernameFromUrl(url)}`);
 
-// debug
-console.log('getNameFromUrl=',getNameFromUrl(url));
-console.log('getResponse=',getResponse);
-// debug
-
-Promise.all([getResponse, getDate])
-  .then(([response, date]) => {
-    responseFromPromise = response;
+Promise.all([getRequest, getDate])
+  .then(([request, date]) => {
+    requestFromPromise = request;
     dateFromPromise = date;
   })
-  .then(res => responseFromPromise.json())
-  .then(json => {
-    avatar = json.avatar_url;
-    userName = json.name;
-    description = json.bio;
-    url = json.url;
-    // debug
-    console.log('json=',json);
-    // debug
-
-    let createName = () => {
-      let userSetName = document.createElement('h2');
-      userSetName.innerHTML = userName;
-      container.appendChild(userSetName);
-      
+  .then(res => requestFromPromise.json())
+  .then(user => {
+    avatarOfUser = user.avatar_url;
+    bioOfUser = user.bio;
+    urlOfUser = user.url;
+    const addUser = () => {
+      const user = document.createElement('h1');
+      user.innerHTML = `${getUsernameFromUrl(url)}`;
+      body.appendChild(user);
     }
-    let createDescription = () => {
-      let userDescription = document.createElement('p');
-      userDescription.innerHTML = description;
-      container.appendChild(userDescription);
+    const addBio = () => {
+      const bio = document.createElement('p');
+      bio.innerHTML = `${bioOfUser}`;
+      body.appendChild(bio);
     }
-    let createAvatar = () => {
-      let userAvatar = document.createElement('img');
-      let newString = document.createElement('br');
-      userAvatar.src = avatar;
-      container.appendChild(userAvatar);
-      container.appendChild(newString);
+    const addImg = () => {
+      const img = document.createElement('img');
+      img.src = this.avatarOfUser;
+      body.appendChild(img);
     }
-    let createUrl = () => {
-      let userUrl = document.createElement('a');
-      let text = document.createTextNode(userName);
-      userUrl.appendChild(text);
-      userUrl.href = 'https://github.com/' + getNameFromUrl(url);
-      container.appendChild(userUrl);
-    }
-    createName();
-    // debug
-    console.log('userName=',userName);
-    console.log('userNameToHtml=', userNameToHtml.value);
-    // debug
-    createDescription();
-    createAvatar();
-    createUrl();
+    addUser();
+    addBio();
+    addImg();
   })
-  .then(dateFromPromise => {
-    let createDate = document.createElement('p');
-    createDate.innerHTML = dateFromPromise;
-    body.appendChild(createDate);
-    hideLoader();
+  .then(res => {
+    const date = document.createElement('p');
+    date.innerHTML = `${dateFromPromise}`;
+    body.appendChild(date);
+    cleanLoader();
   })
-  .catch(err => alert('Информация о пользователе не доступна'))
+  .catch(err => alert('Информация о пользователе не доступна'));
