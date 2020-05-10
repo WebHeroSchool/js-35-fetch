@@ -83,7 +83,7 @@ Promise.all([getResponse, getDate])
     createAvatar();
     createUrl();
   })
-  .then(res => {
+  .then(dateFromPromise => {
     let createDate = document.createElement('p');
     createDate.innerHTML = dateFromPromise;
     body.appendChild(createDate);
