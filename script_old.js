@@ -1,4 +1,4 @@
-const container = document.getElementById('container')
+// const container = document.getElementById('container')
 const body = document.body;
 const url = window.location.toString();
 const date = new Date();
@@ -34,7 +34,7 @@ Promise.all([getResponse, getDate])
     avatar = json.avatar_url;
     // userName = json.name;
     description = json.bio;
-    UserUrl = user.url;
+    UserUrl = json.url;
     const createName = () => {
       const userName = document.createElement('h2');
       userName.innerHTML = getNameFromUrl(url);
