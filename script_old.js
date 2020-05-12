@@ -22,7 +22,7 @@ const getDate = new Promise((resolve, reject) =>
   setTimeout(() => date ? resolve(date) : reject('Дата неизвеста'), 3000)
 );
 
-const getResponse = fetch('https://api.github.com/users/' + getNameFromUrl(url));
+const getResponse = fetch(`https://api.github.com/users/${getNameFromUrl(url)}`);
 
 Promise.all([getResponse, getDate])
   .then(([response, date]) => {
