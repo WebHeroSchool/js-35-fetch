@@ -38,36 +38,36 @@ Promise.all([getResponse, getDate])
     const createName = () => {
       const userName = document.createElement('h2');
       userName.innerHTML = getNameFromUrl(url);
-      container.appendChild(userName);
+      body.appendChild(userName);
     }
     const createDescription = () => {
       const userDescription = document.createElement('p');
       userDescription.innerHTML = description;
-      container.appendChild(userDescription);
+      body.appendChild(userDescription);
     }
     const createAvatar = () => {
       const userAvatar = document.createElement('img');
       const newString = document.createElement('br');
       userAvatar.src = this.avatar;
-      container.appendChild(userAvatar);
-      container.appendChild(newString);
+      body.appendChild(userAvatar);
+      body.appendChild(newString);
     }
-    // const createUrl = () => {
-    //   const UrlToUser = document.createElement('a');
-    //   const textOfUrl = document.createTextNode(getNameFromUrl(url));
-    //   UrlToUser.appendChild(textOfUrl);
-    //   UrlToUser.href = 'https://github.com/' + getNameFromUrl(url);
-    //   container.appendChild(UrlToUser);
-    // }
+    const createUrl = () => {
+      const UrlToUser = document.createElement('a');
+      const textOfUrl = document.createTextNode(getNameFromUrl(url));
+      UrlToUser.appendChild(textOfUrl);
+      UrlToUser.href = 'https://github.com/' + getNameFromUrl(url);
+      body.appendChild(UrlToUser);
+    }
     createName();
     createDescription();
     createAvatar();
-    // createUrl();
+    createUrl();
   })
   .then(res => {
     const date = document.createElement('p');
     date.innerHTML = dateFromPromise;
-    container.appendChild(date);
+    body.appendChild(date);
     hideLoader();
   })
   .catch(err => alert('Информация о пользователе не доступна'));
