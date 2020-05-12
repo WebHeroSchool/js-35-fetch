@@ -52,17 +52,17 @@ Promise.all([getResponse, getDate])
       container.appendChild(userAvatar);
       container.appendChild(newString);
     }
-    const createUrl = () => {
-      const UrlToUser = document.createElement('a');
-      const textOfUrl = document.createTextNode(getNameFromUrl(url));
-      UrlToUser.appendChild(textOfUrl);
-      UrlToUser.href = 'https://github.com/' + getNameFromUrl(url);
-      container.appendChild(UrlToUser);
-    }
+    // const createUrl = () => {
+    //   const UrlToUser = document.createElement('a');
+    //   const textOfUrl = document.createTextNode(getNameFromUrl(url));
+    //   UrlToUser.appendChild(textOfUrl);
+    //   UrlToUser.href = 'https://github.com/' + getNameFromUrl(url);
+    //   container.appendChild(UrlToUser);
+    // }
     createName();
     createDescription();
     createAvatar();
-    createUrl();
+    // createUrl();
   })
   .then(res => {
     const date = document.createElement('p');
