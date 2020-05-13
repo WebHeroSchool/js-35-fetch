@@ -1,4 +1,4 @@
-// const container = document.getElementById('container')
+const container = document.getElementById('container')
 const body = document.body;
 const url = window.location.toString();
 const date = new Date();
@@ -38,26 +38,26 @@ Promise.all([getResponse, getDate])
     const createName = () => {
       const userName = document.createElement('h2');
       userName.innerHTML = getNameFromUrl(url);
-      body.appendChild(userName);
+      container.appendChild(userName);
     }
     const createDescription = () => {
       const userDescription = document.createElement('p');
       userDescription.innerHTML = description;
-      body.appendChild(userDescription);
+      container.appendChild(userDescription);
     }
     const createAvatar = () => {
       const userAvatar = document.createElement('img');
       const newString = document.createElement('br');
       userAvatar.src = this.avatar;
-      body.appendChild(userAvatar);
-      body.appendChild(newString);
+      container.appendChild(userAvatar);
+      container.appendChild(newString);
     }
     const createUrl = () => {
       const UrlToUser = document.createElement('a');
       const textOfUrl = document.createTextNode(getNameFromUrl(url));
       UrlToUser.appendChild(textOfUrl);
       UrlToUser.href = 'https://github.com/' + getNameFromUrl(url);
-      body.appendChild(UrlToUser);
+      container.appendChild(UrlToUser);
     }
     createName();
     createDescription();
@@ -67,7 +67,7 @@ Promise.all([getResponse, getDate])
   .then(res => {
     const date = document.createElement('p');
     date.innerHTML = dateFromPromise;
-    body.appendChild(date);
+    container.appendChild(date);
     hideLoader();
   })
   .catch(err => alert('Информация о пользователе не доступна'));
