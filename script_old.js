@@ -32,12 +32,12 @@ Promise.all([getResponse, getDate])
   .then(res => responseFromPromise.json())
   .then(json => {
     avatar = json.avatar_url;
-    // userName = json.name;
+    nameOfUser = json.name;
     description = json.bio;
     UserUrl = json.url;
     const createName = () => {
       const userName = document.createElement('h2');
-      userName.innerHTML = getNameFromUrl(url);
+      userName.innerHTML = nameOfUser;
       container.appendChild(userName);
     }
     const createDescription = () => {
